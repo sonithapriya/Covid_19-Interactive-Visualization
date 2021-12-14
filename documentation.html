@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Covid-19 Visualization</title>
+	<script src="https://d3js.org/d3.v7.min.js"></script>
+	<link rel="stylesheet" href="style.css">
+	<style>
+		table, th, td {
+		  border: 1px solid black;
+		}
+		
+		th, td {
+		  padding: 10px;
+		}
+		</style>
+</head>
+<body>
+	<div class="header">
+		<h3>INTERACTIVE VISUALIZATION OF COVID 19</h3>
+		<div id="test">
+			<a style="font-size: 20px;" href="documentation.html">Documentation</a>
+			<a style="font-size: 20px;" href="video.html">Video</a> 
+		</div>
+	</div>
+    <div id = "doc">
+        <a href="index.html" 
+        style="float:right;
+        color: #414141;
+        padding: 40px 40px 0px 0px;">Back</a>
+    </div>
+    <div style = "padding: 40px 0px 100px 40px;font-family:sans-serif;">
+        <p> <h3>About:</h3><br>
+			H517 Visualization Design, Analysis, and Evaluation  Project 2<br><br>
+			<strong>Team Members: </strong>
+			Murali Krishna Vattikunta, Priyanka Surapaneni<br><br>
+		<strong>Guided By: </strong>Dr.Khairi Reda	<br><br>
+		<h3>Introduction:</h3><br>
+		<p style = "padding: 0px 40px 0px 0px;  line-height: 1.6;" > From the past two years Covid-19 has been in our daily life, it started changing its mutation and keeps on changing from almost a year. We have many websites which give the stats of the day to day cases for covid, but there is no particular website where we can get all the detailed information about covid-19 which includes cases, deaths, variants, vaccination rates, state wise cases etc. So we want to visualize all those details into one webpage, so that it can be easy to understand and can get an overall information about the covid with the recent statistics.</p>
+		<br>
+		<h3>Problem Statement:</h3><br>
+		<p style = "padding: 0px 40px 0px 0px;  line-height: 1.6;" > The aim of our visualization is to gather all the recent information from websites and articles and plot in an interactive way.</p>
+			<br><p style = "padding: 0px 40px 0px 0px;  line-height: 1.6;" >
+			<a href="https://github.com/owid/covid-19-data/tree/master/public/data/ ">Data Source:</a>  
+			We have taken data from <a href="https://github.com/owid/covid-19-data/blob/master/public/data/owid-covid-data.csv">owid-covid-data.csv</a> and some of the websites and articles which we have referenced below. We want to show all the information in one page but it is not available in one particular website, so we used many websites and articles to get all the information.</p> <br>
+		<h3>Questions:</h3>
+		<ol type="1">
+			<li  style =  "margin: 10px 0;">What are the total number of covid cases and deaths for the top 20 countries?</li>
+			<ul>
+				<li style =  "margin: 10px 0;">We used a world map with clickable markers to represent the cases and deaths trends for the top 20 countries.</li>
+				<li style =  "margin: 10px 0;">Insight: This map tells us that America has the highest number of cases and deaths followed by India being the second.</li>
+			</ul> 
+			<li style =  "margin: 10px 0;">Plot the covid cases by variant</li>
+			<ul>
+				<li style =  "margin: 10px 0;">We used a stacked bar graph to represent the cases by variant.</li>
+				<li style =  "margin: 10px 0;"><p style = "padding: 0px 40px 0px 0px;  line-height: 1.6;" >Insight: From this graph, we can tell that  which country has most number of cases by variant:<br>
+					Alpha -> United kingdom has the number of alpha variant cases<br>
+					Beta -> South Africa has the number of beta variant cases<br>
+					Gamma -> Brazil has the number of gamma variant cases<br>
+					Delta -> United kingdom has the number of delta variant cases<br>
+					Lambda -> Argentia has the number of lambda variant cases</p>
+					</li>
+			</ul> 
+			<li style =  "margin: 10px 0;">What are the total number of covid cases and deaths by continents?</li>
+			<ul>
+				<li style =  "margin: 10px 0;">We used a pie chart to show the percentage of cases and deaths by continents, so that we can say which continent has contributed more number of cases and deaths.</li>
+				<li style =  "margin: 10px 0;">Insights: Asia has the highest percentage of covid cases with 30.9% and Europe has the highest percentage of covid deaths with 27.3%.</li>
+			</ul> 
+			<li style =  "margin: 10px 0;">Plot the active and critical cases by continents</li>
+			<ul>
+				<li style =  "margin: 10px 0;"><p style = "padding: 0px 40px 0px 0px;  line-height: 1.6;" >We tried to use side by side bar chart to show the relation but the active cases being higher and critical cases being smaller, the critical cases graph is getting diminished, so we used two graphs one below the other which tells us the active cases and critical cases by continents, so this helps us to find the top continent for both active and critical cases.</p></li>
+				<li style =  "margin: 10px 0;">Insights: By seeing the graphs we can say that North America has the highest number of active cases( 10,513,362) and Asia has the highest number of critical cases(30,062).</li>
+			</ul> 
+			<li style =  "margin: 10px 0;">What are the daily new cases of covid in the USA by state wise?</li>
+			<ul>
+				<li style =  "margin: 10px 0;">We used a cholera path map to see the daily new cases state wise, so we can identify which state has the highest number of cases to the date they want.</li>
+				<li style =  "margin: 10px 0;"><p style = "padding: 0px 40px 0px 0px;  line-height: 1.6;" >Insights: We selected the below dates to see the which state has the highest number of day wise cases: <br>
+					2020-06-25 -> Texas has the highest number of daily cases(5,996) <br>
+					2020-12–02 -> California has the highest number of daily cases(20,762)<br>
+					We can select any date and can see the daily cases information for all the states.</p>
+					</li>
+			</ul> 
+			<li style =  "margin: 10px 0;">Plot the total tests vs total cases</li>
+			<ul>
+				<li style =  "margin: 10px 0;">We used a scatter plot to show the correlation between total tests versus total cases.</li>
+				<li style =  "margin: 10px 0;">Insights: From the scatter plot, we can say that Vermont has the least number of covid cases(53,431) and California has the highest number of cases(5,000,000).</li>
+			</ul> 
+			<li style =  "margin: 10px 0;">Plot the covid deaths by age and sex in USA</li>
+			<ul>
+				<li style =  "margin: 10px 0;">We used a stacked bar graph to show the relation between deaths by age and sex, this tells us which age group and sex has more number of deaths.</li>
+				<li style =  "margin: 10px 0;"><p style = "padding: 0px 40px 0px 0px;  line-height: 1.6;" >From the above graphs we can say that people with age above 85 years and above has the highest number of deaths(206,038), and overall male has highest number of deaths(430,257).</p></li>
+			</ul> 
+			<li style =  "margin: 10px 0;">Plot the vaccination percentage for top 20 countries</li>
+			<ul>
+				<li style =  "margin: 10px 0;">We used a bar graph to show the top 20 vaccinated countries, it helps us to find the top vaccinated country.</li>
+				<li style =  "margin: 10px 0;">The country Spain has the highest fully vaccinated percentage(80.55%).</li>
+			</ul> 
+			<li style =  "margin: 10px 0;">Plot the deaths after vaccination in four countries</li>
+			<ul>
+				<li style =  "margin: 10px 0;"><p style = "padding: 0px 40px 0px 0px;  line-height: 1.6;" >We used a normal bar graph to show the deaths after vaccinations, we just used four countries' data to represent this, we limited it to four because none of the websites provided accurate information about the deaths after vaccination.</p></li>
+				<li style =  "margin: 10px 0;">Among those four countries we can say that the United Kingdom has the highest number of covid deaths after vaccination(12,317).</li>
+			</ul> 
+			<li style =  "margin: 10px 0;">What are the world wide cases for the latest variant?</li>
+			<ul>
+				<li style =  "margin: 10px 0;">We want to show the covid latest variant cases worldwide, so we used a world map to represent this information.</li>
+				<li style =  "margin: 10px 0;">We can see world wide covid latest variant cases, and we see that South Africa has the highest number of cases (255).</li>
+			</ul> 
+		  </ol> <br>
+		  <h3>Learnt:</h3><br>
+		  <p style = "padding: 0px 40px 0px 0px;  line-height: 1.6;" >From the above graphs, we leant how to visualize interactively and choose the best graphs based on the questions, and learnt how to code for  a separate iframe for timeline graph within maker pop up in map and clustering, and Dynamic update of y axis according to the variants and we can select and unselect particular variants  by clicking on  legend, Dynamic animation of timeline in choropleth map. We also gained a lot of information in the coding perspective.
+			</p><br>
+		  <h3>Takeaways from Class:</h3>
+		  <ul>
+			<li style =  "margin: 10px 0;">We maintained the graphical integrity with simple and normal graphs with accurate data without any chart junk.</li>
+			<li style =  "margin: 10px 0;">We used appropriate marks and channels, for instance color to differentiate multivariate data.</li>
+			<li style =  "margin: 10px 0;">We have used maps plots to represent spatial data and built interaction and navigation within the map for checking the trends according to the time.</li>
+			<li style =  "margin: 10px 0;">We have used aggregation for some plots while data cleaning and used clustering methods in some maps plots.</li>
+			<li style =  "margin: 10px 0;">We have chosen a color palette according to the color oracle(discussed in class) to include color deficiency people.</li>
+			<img width="700" height="500" src="color.png">
+			<li style =  "margin: 10px 0;">We plotted all the graphs interactively and made some graphs which have connections to other graphs for multiple views.</li>
+			<li style =  "margin: 10px 0;">Some of the graphs which we have drawn are ideas from the class, especially the choropleth map which you learnt from class, made us think through and visualize.</li>
+		  </ul> 
+
+
+		  <br>
+		  <table>
+			<tr>
+			  <th>Key Tasks of the Project</th>
+			  <th>Members Contributed</th>
+			</tr>
+			<tr>
+			  <td>Brainstorming the idea</td>
+			  <td> Murali, Priyanka</td>
+			</tr>
+		   <tr>
+		      <td>Research on Datasets</td>
+		      <td>Murali, Priyanka</td>
+		    </tr>
+			<tr>
+				<td>Data Cleaning </td>
+				<td>Priyanka</td>
+			  </tr>
+			  <tr>
+				<td>World map graph</td>
+				<td>Priyanka</td>
+			  </tr>
+			  <tr>
+				<td>Covid cases for each variant graph</td>
+				<td>Priyanka</td>
+			  </tr>
+			  <tr>
+				<td>Covid cases and deaths by continents graph</td>
+				<td>Murali</td>
+			  </tr>
+			  <tr>
+				<td>Daily new cases of Covid 19 in USA by states graph</td>
+				<td>Murali</td>
+			  </tr>
+			  <tr>
+				<td>Total tests vs total cases plot</td>
+				<td>Murali</td>
+			  </tr>
+			  <tr>
+				<td>Active and Critical cases by continents</td>
+				<td>Murali</td>
+			  </tr>
+			  <tr>
+				<td>Deaths by age and sex</td>
+				<td>Murali</td>
+			  </tr>
+			  <tr>
+				<td>Vaccinations percentage graph</td>
+				<td>Priyanka</td>
+			  </tr>
+			  <tr>
+				<td>Deaths after vaccination</td>
+				<td>Priyanka</td>
+			  </tr>
+			  <tr>
+				<td>World wide covid cases for latest variant</td>
+				<td>Priyanka</td>
+			  </tr>
+			  <tr>
+				<td>Project Video, Documentation</td>
+				<td>Murali, Priyanka</td>
+			  </tr>
+		  </table><br>
+		  <h3>References:</h3>
+		  <ol type="1">
+			<li  style =  "margin: 10px 0;"><a href="https://github.com/owid/covid-19-data/tree/master/public/data/">https://github.com/owid/covid-19-data/tree/master/public/data/</a> </li>
+			<li style =  "margin: 10px 0;"><a href="https://ourworldindata.org/coronavirus-source-data ">https://ourworldindata.org/coronavirus-source-data</a></li>
+			<li style =  "margin: 10px 0;"><a href="https://ourworldindata.org/covid-cases">https://ourworldindata.org/covid-cases</a></li>
+			<li style =  "margin: 10px 0;"><a href="https://www.who.int/en/activities/tracking-SARS-CoV-2-variants/">https://www.who.int/en/activities/tracking-SARS-CoV-2-variants/</a></li>
+			<li style =  "margin: 10px 0;"><a href="https://www.gisaid.org/hcov19-variants/">https://www.gisaid.org/hcov19-variants/</a></li>
+			<li style =  "margin: 10px 0;"><a href="https://www.tribuneindia.com/news/nation/96-6-pc-protection-from-death-after-1-covid-shot-97-5-pc-after-both-icmr-308875">https://www.tribuneindia.com/news/nation/96-6-pc-protection-from-death-after-1-covid-shot-97-5-pc-after-both-icmr-308875</a></li>
+			<li style =  "margin: 10px 0;"><a href="https://www.statista.com/statistics/1191568/reported-deaths-from-covid-by-age-us/">https://www.statista.com/statistics/1191568/reported-deaths-from-covid-by-age-us/</a></li>
+			<li style =  "margin: 10px 0;"><a href="https://www.statista.com/statistics/1254271/us-total-number-of-covid-cases-by-age-group/">https://www.statista.com/statistics/1254271/us-total-number-of-covid-cases-by-age-group/</a></li>
+			<li style =  "margin: 10px 0;"><a href="https://data.cdc.gov/NCHS/Provisional-COVID-19-Deaths-by-Sex-and-Age/9bhg-hcku/data">https://data.cdc.gov/NCHS/Provisional-COVID-19-Deaths-by-Sex-and-Age/9bhg-hcku/data</a></li>
+			<li style =  "margin: 10px 0;"><a href="https://data.cdc.gov/Case-Surveillance/United-States-COVID-19-Cases-and-Deaths-by-State-o/9mfq-cb36/data">https://data.cdc.gov/Case-Surveillance/United-States-COVID-19-Cases-and-Deaths-by-State-o/9mfq-cb36/data</a></li>
+			<li style =  "margin: 10px 0;"><a href="https://www.livemint.com/news/india/any-death-after-covid-vaccination-cannot-be-automatically-linked-to-it-centre-clarifies-11623749344931.html">https://www.livemint.com/news/india/any-death-after-covid-vaccination-cannot-be-automatically-linked-to-it-centre-clarifies-11623749344931.html</a></li>
+			<li style =  "margin: 10px 0;"><a href="https://www.nebraskamed.com/COVID/does-vaers-list-deaths-caused-by-covid-19-vaccines">https://www.nebraskamed.com/COVID/does-vaers-list-deaths-caused-by-covid-19-vaccines</a></li>
+			<li style =  "margin: 10px 0;"><a href="https://www.mayoclinic.org/diseases-conditions/coronavirus/in-depth/herd-immunity-and-coronavirus/art-20486808">https://www.mayoclinic.org/diseases-conditions/coronavirus/in-depth/herd-immunity-and-coronavirus/art-20486808</a></li>
+			<li style =  "margin: 10px 0;"><a href="https://www.riotimesonline.com/brazil-news/modern-day-censorship/covid-vaccine-deaths-and-injuries-not-talked-about-enough/">https://www.riotimesonline.com/brazil-news/modern-day-censorship/covid-vaccine-deaths-and-injuries-not-talked-about-enough/</a></li>
+			<li style =  "margin: 10px 0;"><a href="https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/articles/deathsinvolvingcovid19byvaccinationstatusengland/deathsoccurringbetween2januaryand2july2021">https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/articles/</a></li>
+		  </ol> 
+		</p>
+    </div>
+</body>
+</html>
